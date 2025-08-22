@@ -1,0 +1,41 @@
+[
+  {
+    "uid": "user-student-01",
+    "email": null,
+    "userId": "student",
+    "password": "password123",
+    "role": "student",
+    "priorityPoints": 1000,
+    "createdAt": "2023-01-01T00:00:00.000Z"
+  },
+  {
+    "uid": "user-admin-01",
+    "email": "admin@example.com",
+    "userId": null,
+    "password": "password123",
+    "role": "admin",
+    "fullName": "Dr. Evelyn Reed",
+    "post": "Faculty Head",
+    "createdAt": "2023-01-01T00:00:00.000Z"
+  },
+  {
+    "uid": "user-admin-02",
+    "email": "samuel.grant@example.com",
+    "userId": null,
+    "password": "password123",
+    "role": "admin",
+    "fullName": "Professor Samuel Grant",
+    "post": "Professor",
+    "createdAt": "2023-02-15T00:00:00.000Z"
+  },
+  {
+    "uid": "user-admin-03",
+    "email": "olivia.chen@example.com",
+    "userId": null,
+    "password": "password123",
+    "role": "admin",
+    "fullName": "Dr. Olivia Chen",
+    "post": "Department Chair",
+    "createdAt": "2023-03-10T00:00:00.000Z"
+  }
+]

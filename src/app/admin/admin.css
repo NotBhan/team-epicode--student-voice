@@ -1,0 +1,6 @@
+.admin-dashboard {
+    display: flex;
+    height: 100vh;
+    background-color: hsl(var(--muted) / 0.4);
+    overflow: hidden;
+}

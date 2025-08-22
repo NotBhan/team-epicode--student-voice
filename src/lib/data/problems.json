@@ -1,0 +1,210 @@
+[
+  {
+    "id": "PRB-698",
+    "title": "Library fans not working",
+    "description": "Fans of library is not working since last 2 days, kindly take immediate action",
+    "category": "Facilities",
+    "priorityPoints": 0,
+    "author": {
+      "name": "My-user-id"
+    },
+    "status": "Solved",
+    "hashtags": [
+      "#LibraryIssue",
+      "#ImmediateAction",
+      "#LibraryServices"
+    ],
+    "createdAt": "2025-08-22T03:42:47.783Z",
+    "statusHistory": [
+      {
+        "status": "Unsolved",
+        "timestamp": "2025-08-22T03:42:52.029Z"
+      },
+      {
+        "status": "Approved and Under Investigation",
+        "timestamp": "2025-08-22T03:44:48.518Z"
+      },
+      {
+        "status": "Pending Verification",
+        "timestamp": "2025-08-22T03:46:37.239Z"
+      },
+      {
+        "status": "Solved",
+        "timestamp": "2025-08-22T03:46:40.487Z"
+      }
+    ]
+  },
+  {
+    "id": "PRB-001",
+    "title": "Unreliable Wi-Fi in Library",
+    "description": "The Wi-Fi in the main library building is extremely slow and disconnects frequently, especially during peak hours. It's difficult to study and complete assignments.",
+    "priorityPoints": 2300,
+    "author": {
+      "name": "student"
+    },
+    "status": "Approved and Under Investigation",
+    "hashtags": [
+      "#wifi",
+      "#library",
+      "#infrastructure"
+    ],
+    "createdAt": "2024-08-18T12:00:00.000Z",
+    "statusHistory": [
+      {
+        "status": "Unsolved",
+        "timestamp": "2024-08-18T12:00:00.000Z"
+      },
+      {
+        "status": "Approved and Under Investigation",
+        "timestamp": "2024-08-19T10:55:00.000Z"
+      }
+    ],
+    "replies": [
+      {
+        "id": "REP-001",
+        "author": {
+          "name": "Anonymous",
+          "isOP": false
+        },
+        "content": "Second this! It's been a huge problem this semester. I've had to use my mobile hotspot multiple times just to submit my work.",
+        "createdAt": "2024-08-18T14:30:00.000Z",
+        "upvotes": 8
+      },
+      {
+        "id": "REP-002",
+        "author": {
+          "name": "Original Poster",
+          "isOP": true
+        },
+        "content": "Exactly. I'm glad I'm not the only one. Hopefully, the administration sees this and takes action soon.",
+        "createdAt": "2024-08-18T15:00:00.000Z",
+        "upvotes": 3
+      },
+      {
+        "id": "REP-003",
+        "author": {
+          "name": "Admin",
+          "isOP": false
+        },
+        "content": "Thank you for bringing this to our attention. IT has been notified and is investigating the issue. We've identified a faulty access point and are working on a replacement.",
+        "createdAt": "2024-08-19T11:00:00.000Z",
+        "upvotes": 12
+      }
+    ]
+  },
+  {
+    "id": "PRB-002",
+    "title": "Not enough vegetarian options in the main cafeteria",
+    "description": "The main cafeteria has very few vegetarian and vegan options. The ones that are available are often repetitive. Could we please have more variety?",
+    "priorityPoints": 1500,
+    "author": {
+      "name": "student"
+    },
+    "status": "Unsolved",
+    "hashtags": [
+      "#food",
+      "#cafeteria",
+      "#dining"
+    ],
+    "createdAt": "2024-08-19T09:30:00.000Z",
+    "statusHistory": [
+      {
+        "status": "Unsolved",
+        "timestamp": "2024-08-19T09:30:00.000Z"
+      }
+    ],
+    "replies": []
+  },
+  {
+    "id": "PRB-003",
+    "title": "Broken water fountain on the 2nd floor of the Science building",
+    "description": "The water fountain near the chemistry labs has been broken for over a week. It's an inconvenience for students who need to stay hydrated between classes.",
+    "priorityPoints": 500,
+    "author": {
+      "name": "student"
+    },
+    "status": "Solved",
+    "hashtags": [
+      "#facilities",
+      "#maintenance",
+      "#safety"
+    ],
+    "createdAt": "2024-08-12T15:00:00.000Z",
+    "statusHistory": [
+      {
+        "status": "Unsolved",
+        "timestamp": "2024-08-12T15:00:00.000Z"
+      },
+      {
+        "status": "Approved and Under Investigation",
+        "timestamp": "2024-08-12T18:00:00.000Z"
+      },
+      {
+        "status": "Solved",
+        "timestamp": "2024-08-13T09:00:00.000Z"
+      }
+    ],
+    "replies": [
+      {
+        "id": "REP-004",
+        "author": {
+          "name": "Admin",
+          "isOP": false
+        },
+        "content": "Facilities has fixed the water fountain as of this morning. Thank you for the report.",
+        "createdAt": "2024-08-13T10:00:00.000Z",
+        "upvotes": 2
+      }
+    ]
+  },
+  {
+    "id": "PRB-004",
+    "title": "Course registration portal crashing",
+    "description": "The course registration portal crashed multiple times during the registration period, causing a lot of stress and preventing students from getting into required classes.",
+    "priorityPoints": 4300,
+    "author": {
+      "name": "student"
+    },
+    "status": "Unsolved",
+    "hashtags": [
+      "#registration",
+      "#academics",
+      "#portal"
+    ],
+    "createdAt": "2024-08-20T10:00:00.000Z",
+    "statusHistory": [
+      {
+        "status": "Unsolved",
+        "timestamp": "2024-08-20T10:00:00.000Z"
+      }
+    ],
+    "replies": []
+  },
+  {
+    "id": "PRB-005",
+    "title": "Lack of available study spaces in the evenings",
+    "description": "It's nearly impossible to find a quiet place to study in the library or student center after 6 PM. Can more rooms be opened for students?",
+    "priorityPoints": 1800,
+    "author": {
+      "name": "student"
+    },
+    "status": "Approved and Under Investigation",
+    "hashtags": [
+      "#study-spaces",
+      "#library",
+      "#student-life"
+    ],
+    "createdAt": "2024-08-17T18:45:00.000Z",
+    "statusHistory": [
+      {
+        "status": "Unsolved",
+        "timestamp": "2024-08-17T18:45:00.000Z"
+      },
+      {
+        "status": "Approved and Under Investigation",
+        "timestamp": "2024-08-20T11:00:00.000Z"
+      }
+    ],
+    "replies": []
+  }
+]

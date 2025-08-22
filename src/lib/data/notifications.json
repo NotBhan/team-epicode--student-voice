@@ -1,0 +1,51 @@
+
+[
+    {
+        "id": "student-notif-1",
+        "text": "Admin has replied to your complaint 'Unreliable Wi-Fi in Library'.",
+        "timestamp": "2024-08-21T10:00:00Z",
+        "read": false,
+        "href": "/problem/PRB-001"
+    },
+    {
+        "id": "student-notif-2",
+        "text": "The complaint 'Broken water fountain...' has been marked as Solved.",
+        "timestamp": "2024-08-20T15:30:00Z",
+        "read": false,
+        "href": "/problem/PRB-003"
+    },
+    {
+        "id": "student-notif-3",
+        "text": "You have been awarded 1000 Priority Points for the new semester.",
+        "timestamp": "2024-08-20T09:00:00Z",
+        "read": true
+    },
+    {
+        "id": "admin-notif-1",
+        "text": "A new high-priority complaint 'Course registration portal crashing' has been submitted.",
+        "timestamp": "2024-08-21T11:00:00Z",
+        "read": false,
+        "href": "/problem/PRB-004"
+    },
+    {
+        "id": "admin-notif-2",
+        "text": "Complaint 'Unreliable Wi-Fi in Library' has received 500 new Priority Points.",
+        "timestamp": "2024-08-21T08:45:00Z",
+        "read": false,
+        "href": "/problem/PRB-001"
+    },
+    {
+        "id": "admin-notif-3",
+        "text": "Complaint 'Broken water fountain...' is pending student verification.",
+        "timestamp": "2024-08-19T16:00:00Z",
+        "read": true,
+        "href": "/problem/PRB-003"
+    },
+    {
+        "id": "admin-notif-4",
+        "text": "You were tagged in a new complaint: 'Unreliable Wi-Fi in Library'.",
+        "timestamp": "2024-08-22T09:15:00Z",
+        "read": false,
+        "href": "/problem/PRB-001"
+    }
+]
