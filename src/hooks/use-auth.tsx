@@ -4,7 +4,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import type { UserProfile, UserRole } from '@/lib/types';
-import { getAllUsers, updateUserPriorityPoints as updateUserPriorityPointsAction } from '@/services/user-service';
+import { addUser, getAllUsers, updateUserPriorityPoints as updateUserPriorityPointsAction } from '@/services/user-service';
 
 export type MockUser = Pick<UserProfile, 'uid' | 'email' | 'userId'>;
 
@@ -69,9 +69,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const signUp = useCallback(async (identifier: string, password: string, role: UserRole): Promise<UserProfile | null> => {
-    // This function would need to be adapted to write to the users.json file
-    // For now, it will only work for the session.
-    console.warn("Sign up is not configured to persist data in this prototype.");
+    // Uniqueness is enforced by the DB UNIQUE constraints on email / userId.
+    // The server action rethrows the constraint violation; duplicate checks below are kept
+    // to give the user a clean error before attempting the insert.
     const userStore = await getAllUsers();
     if (role === 'student') {
         if (userStore.some(u => u.userId === identifier)) {
@@ -82,7 +82,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             throw new Error('An account with this email already exists.');
         }
     }
-    
+
     const newUser: UserProfile = {
         uid: `user-${Date.now()}`,
         email: role === 'admin' ? identifier : null,
@@ -92,9 +92,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         priorityPoints: role === 'student' ? 1000 : undefined,
         createdAt: new Date(),
     };
-    
-    // In a real scenario, you'd call a service to add the user.
-    // For this prototype, we'll just log them in without persisting the new account.
+
+    // Persist the account to the database.
+    await addUser({
+        email: newUser.email,
+        userId: newUser.userId,
+        password,
+        role,
+        priorityPoints: newUser.priorityPoints,
+    });
+
     const profile: UserProfile = { ...newUser };
     delete profile.password;
 

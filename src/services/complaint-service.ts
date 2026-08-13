@@ -2,71 +2,69 @@
 'use server';
 
 import type { Problem, ProblemStatus } from '@/lib/types';
-import fs from 'fs-extra';
-import path from 'path';
-
-const problemsFilePath = path.join(process.cwd(), 'src', 'lib', 'data', 'problems.json');
-
-async function readProblems(): Promise<Problem[]> {
-    try {
-        const problemsData = await fs.readFile(problemsFilePath, 'utf-8');
-        return JSON.parse(problemsData);
-    } catch (error) {
-        console.error('Error reading problems file:', error);
-        return [];
-    }
-}
-
-async function writeProblems(problems: Problem[]): Promise<void> {
-    try {
-        await fs.writeFile(problemsFilePath, JSON.stringify(problems, null, 2));
-    } catch (error) {
-        console.error('Error writing problems file:', error);
-    }
-}
+import { getDb, rowToComplaint } from '@/lib/db';
 
 export async function getAllComplaints(): Promise<Problem[]> {
-    return await readProblems();
+  const database = getDb();
+  const complaints = database.prepare('SELECT * FROM complaints ORDER BY createdAt DESC').all() as any[];
+  const replies = database.prepare('SELECT * FROM replies').all() as any[];
+  const history = database.prepare('SELECT complaintId, status, timestamp FROM status_history').all() as any[];
+
+  return complaints.map((row) => {
+    const complaintReplies = replies.filter((r) => r.complaintId === row.id);
+    const complaintHistory = history
+      .filter((h) => h.complaintId === row.id)
+      .map((h) => ({ status: h.status, timestamp: h.timestamp }));
+    return rowToComplaint(row, complaintReplies, complaintHistory);
+  });
 }
 
 export async function getComplaintById(id: string): Promise<Problem | undefined> {
-  const problems = await readProblems();
-  return problems.find(p => p.id.toLowerCase() === id.toLowerCase());
+  const database = getDb();
+  const row = database.prepare('SELECT * FROM complaints WHERE lower(id) = lower(?)').get(id) as any;
+  if (!row) return undefined;
+
+  const replies = database.prepare('SELECT * FROM replies WHERE complaintId = ?').all(row.id) as any[];
+  const history = database
+    .prepare('SELECT status, timestamp FROM status_history WHERE complaintId = ?')
+    .all(row.id) as any[];
+  return rowToComplaint(row, replies, history);
 }
 
 export async function addComplaint(problem: Problem): Promise<Problem[]> {
-    const problems = await readProblems();
-    const newProblems = [{
-      ...problem, 
-      priorityPoints: 0,
-      statusHistory: [{ status: 'Unsolved', timestamp: new Date().toISOString() }]
-    }, ...problems];
-    await writeProblems(newProblems);
-    return newProblems;
+  const database = getDb();
+  const now = new Date().toISOString();
+
+  database.prepare(`
+    INSERT INTO complaints (id, title, description, category, priorityPoints, authorName, authorAvatarUrl, authorYear, authorBranch, status, hashtags, createdAt)
+    VALUES (?, ?, ?, ?, 0, ?, ?, ?, ?, 'Unsolved', ?, ?)
+  `).run(
+    problem.id,
+    problem.title,
+    problem.description,
+    problem.category,
+    problem.author.name,
+    problem.author.avatarUrl ?? null,
+    problem.author.year ?? null,
+    problem.author.branch ?? null,
+    JSON.stringify(problem.hashtags),
+    now,
+  );
+  database.prepare('INSERT INTO status_history (complaintId, status, timestamp) VALUES (?, ?, ?)').run(problem.id, 'Unsolved', now);
+
+  return getAllComplaints();
 }
 
 export async function updateProblemPoints(problemId: string, newPoints: number): Promise<Problem[]> {
-    const problems = await readProblems();
-    const newProblems = problems.map(p => 
-        p.id === problemId ? { ...p, priorityPoints: newPoints } : p
-    );
-    await writeProblems(newProblems);
-    return newProblems;
+  const database = getDb();
+  database.prepare('UPDATE complaints SET priorityPoints = ? WHERE id = ?').run(newPoints, problemId);
+  return getAllComplaints();
 }
 
 export async function updateProblemStatus(problemId: string, newStatus: ProblemStatus): Promise<Problem[]> {
-    const problems = await readProblems();
-    const newProblems = problems.map(p => {
-        if (p.id === problemId) {
-            const newHistoryEntry = { status: newStatus, timestamp: new Date().toISOString() };
-            return { 
-                ...p, 
-                status: newStatus,
-                statusHistory: [...(p.statusHistory || []), newHistoryEntry]
-            };
-        }
-        return p;
-    });
-    await writeProblems(newProblems);
-    return newProblems;
+  const database = getDb();
+  const now = new Date().toISOString();
+  database.prepare('UPDATE complaints SET status = ? WHERE id = ?').run(newStatus, problemId);
+  database.prepare('INSERT INTO status_history (complaintId, status, timestamp) VALUES (?, ?, ?)').run(problemId, newStatus, now);
+  return getAllComplaints();
 }

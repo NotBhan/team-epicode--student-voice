@@ -1,5 +1,6 @@
 
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { Toaster } from '@/components/ui/toaster';
 import { Header } from '@/components/layout/header';
 import { QuickAssistChat } from '@/components/quick-assist-chat';
@@ -36,7 +37,9 @@ export default function RootLayout({
       <body className={cn('font-sans antialiased', fontSans.variable, fontHeading.variable)}>
         <AuthProvider>
           <ComplaintProvider>
-            <PageTransitionLoader />
+            <Suspense fallback={null}>
+              <PageTransitionLoader />
+            </Suspense>
             <div className="relative flex min-h-screen w-full flex-col">
               <Header />
               <main className="flex-1">{children}</main>
