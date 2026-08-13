@@ -45,5 +45,3 @@ next-env.d.ts
 firebase-debug.log
 firestore-debug.log
 
-# local sqlite database
-/data/
